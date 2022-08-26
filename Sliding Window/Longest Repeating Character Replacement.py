@@ -10,9 +10,7 @@ class Solution:
                 maxFreq = max(maxFreq, hashMap[key])
             if (r - l + 1) - maxFreq <= k:
                 res = max(res, r - l + 1)
-                r += 1
             else:
                 hashMap[s[l]] -= 1
                 l += 1
         return res
-        
