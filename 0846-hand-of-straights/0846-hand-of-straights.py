@@ -4,9 +4,7 @@ class Solution:
         if len(hand) % groupSize != 0:
             return False
         
-        unique = list(set(hand))
-        unique.sort()
-        unique = deque(unique)
+        unique = deque(sorted(set(hand)))
         cnt = dict(Counter(hand))
         
         while unique:
@@ -20,7 +18,7 @@ class Solution:
                     return False
                 cnt[unique[0] + i] -= 1
         
-        for key in unique:
+        if unique:
             return False
         
         return True
