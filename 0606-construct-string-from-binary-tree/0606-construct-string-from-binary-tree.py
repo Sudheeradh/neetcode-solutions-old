@@ -13,11 +13,7 @@ class Solution:
         
         def pre(root, res):
             if root.left == None and root.right != None:
-                res += str(root.val)
-                res +=  "()"
-                res += "("
-                res = pre(root.right, res)
-                res += ")"
+                res += f"{str(root.val)}()({pre(root.right, res)})"
                 return res
             
             elif root.left == None and root.right == None:
@@ -25,20 +21,11 @@ class Solution:
                 return res
             
             elif root.left != None and root.right == None:
-                res += str(root.val)
-                res += "("
-                res = pre(root.left, res)
-                res += ")"
+                res += f"{str(root.val)}({pre(root.left, res)})"
                 return res
             
             else:
-                res += str(root.val)
-                res += "("
-                res = pre(root.left, res)
-                res += ")"
-                res += "("
-                res = pre(root.right, res)
-                res += ")"
+                res += f"{str(root.val)}({pre(root.left, res)})({pre(root.right, res)})"
                 return res
         
         return pre(root, res)
