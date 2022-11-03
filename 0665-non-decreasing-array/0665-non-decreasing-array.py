@@ -1,27 +1,41 @@
 class Solution:
     def checkPossibility(self, nums: List[int]) -> bool:
-        count = 0
-        temp, temp_ind = 0, 0
-        for i in range(len(nums) - 1):
-            if nums[i] > nums[i + 1]:
-                temp, temp_ind = nums[i], i
-                nums[i] = nums[i + 1]
-                break
+        if len(nums) <= 1:
+            return True
         
-        r1, r2 = True, True
-        for i in range(len(nums) - 1):
-            if nums[i] > nums[i + 1]:
-                r1 = False
-        
-        nums[temp_ind] = temp
-        
-        if temp_ind + 2 < len(nums):
-            nums[temp_ind + 1] = nums[temp_ind + 2]
+        def check(nums):
             for i in range(len(nums) - 1):
                 if nums[i] > nums[i + 1]:
-                    r2 = False
-        # else:
-        #     r2 = False
+                    return False
+            return True
         
-        return r1 or r2
+        conflict = 0
+        for i in range(len(nums) - 1):
+            if nums[i] > nums[i + 1]:
+                conflict = i
+                break
+        
+        conflict_val = nums[conflict]
+        
+        if conflict > 0:
+            nums[conflict] = nums[conflict - 1]
+        else:
+            nums[conflict] = nums[conflict + 1]
+        r1 = check(nums)
+        if r1:
+            return True
+        
+        
+        nums[conflict] = conflict_val
+        
+        
+        if conflict < len(nums) - 2:
+            nums[conflict + 1] = nums[conflict + 2]
+        else:
+            nums[conflict + 1] = nums[conflict]
+        r2 = check(nums)
+        if r2:
+            return True
+        
+        return False
         
