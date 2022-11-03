@@ -9,33 +9,28 @@ class Solution:
                     return False
             return True
         
+        nums.append(float('inf'))
+        nums.insert(0, float('-inf'))
+        
+        if check(nums):
+            return True
+        
         conflict = 0
         for i in range(len(nums) - 1):
             if nums[i] > nums[i + 1]:
                 conflict = i
                 break
         
-        conflict_val = nums[conflict]
+        main1 = nums[conflict - 1 : conflict + 3]
+        main2 = nums[conflict - 1 : conflict + 3]
+        main1[1] = main1[0]
+        main2[2] = main2[3]
         
-        if conflict > 0:
-            nums[conflict] = nums[conflict - 1]
-        else:
-            nums[conflict] = nums[conflict + 1]
-        r1 = check(nums)
-        if r1:
-            return True
+        if check(main1):
+            nums[conflict - 1 : conflict + 3] = main1
         
+        elif check(main2):
+            nums[conflict - 1 : conflict + 3] = main2
         
-        nums[conflict] = conflict_val
-        
-        
-        if conflict < len(nums) - 2:
-            nums[conflict + 1] = nums[conflict + 2]
-        else:
-            nums[conflict + 1] = nums[conflict]
-        r2 = check(nums)
-        if r2:
-            return True
-        
-        return False
+        return check(nums)
         
