@@ -14,7 +14,5 @@ class Solution:
                 left_min = max(0, left_min - 1)
                 if left_max < 0:
                     return False
-        if left_min > 0  or left_max < 0:
-            return False
-        return True
+        return left_min == 0
             
