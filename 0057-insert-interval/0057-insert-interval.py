@@ -17,10 +17,6 @@ class Solution:
             else:
                 newInterval[0] = min(intervals[i][0], newInterval[0])
                 newInterval[1] = max(intervals[i][1], newInterval[1])
-                # if i == len(intervals) - 1:
-                #     res.append(newInterval)
-        
-        # if intervals[-1][1]  < newInterval[0]:
         res.append(newInterval)
         
         return res
