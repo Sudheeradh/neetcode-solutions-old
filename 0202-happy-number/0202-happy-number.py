@@ -4,8 +4,6 @@ class Solution:
         res = 0
         while n not in seen:
             seen.add(n)
-            n = list(str(n))
-            n = map(lambda x: int(x) ** 2, n)
-            n = sum(n)
+            n = sum(map(lambda x: int(x) ** 2, list(str(n))))
         return n == 1
             
