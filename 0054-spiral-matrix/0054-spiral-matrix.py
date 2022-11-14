@@ -1,10 +1,10 @@
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        visited = set([(0, 0)])
+        visited = set()
         R = len(matrix)
         C = len(matrix[0])
-        res = [matrix[0][0]]
-        i, j = 0, 1
+        res = []
+        i, j = 0, 0
         curr = 0
         
         while len(visited) < R * C:
