@@ -1,24 +1,17 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
+        if nums == []:
+            return [[]]
+        
+        first = nums[0]
+        remaining = nums[1:]
+        perms = self.permute(remaining)
         res = []
-        curr = []
         
-        def _permute():
-            if len(curr) == len(nums):
-                if len(curr) == len(set(curr)):
-                    res.append(curr[:])
-                    return
-                else:
-                    return
-            
-            if len(curr) > len(nums):
-                return
-            
-            for i in nums:
-                curr.append(i)
-                _permute()
-                curr.pop()
+        for perm in perms:
+            for i in range(len(perm) + 1):
+                res.append(perm[:i] + [first] + perm[i:])
         
-        _permute()
         return res
+    
