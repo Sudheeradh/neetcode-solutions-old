@@ -3,21 +3,21 @@ class Solution:
         res = []
         curr = []
         
-        def _cs(target):
-            if target < 0:
+        def _cs(target, ptr):
+            if target < 0 or ptr == len(candidates):
                 return
             
             if target == 0:
                 res.append(curr[:])
             
-            for i in candidates:
-                curr.append(i)
-                _cs(target - i)
-                curr.pop()
+            curr.append(candidates[ptr])
+            _cs(target - candidates[ptr], ptr)
+            curr.pop()
+            _cs(target, ptr + 1)
         
-        _cs(target)
+        _cs(target, 0)
         for i in range(len(res)):
-            res[i] = tuple(sorted(res[i]))
+            res[i] = tuple((res[i]))
         res = list(set(res))
         return res
         
