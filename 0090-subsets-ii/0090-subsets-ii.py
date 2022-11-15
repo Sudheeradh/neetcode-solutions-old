@@ -17,11 +17,6 @@ class Solution:
             _swd(bisect_left(nums,nums[ptr] + 1))
         
         _swd(0)
-        
-#         for i in range(len(res)):
-#             res[i] = tuple(sorted(res[i]))
-        
-#         res = list(set(res))
         return res
         
         
