@@ -9,6 +9,7 @@ class Solution:
             
             if target == 0:
                 res.append(curr[:])
+                return 
             
             curr.append(candidates[ptr])
             _cs(target - candidates[ptr], ptr)
@@ -16,8 +17,5 @@ class Solution:
             _cs(target, ptr + 1)
         
         _cs(target, 0)
-        for i in range(len(res)):
-            res[i] = tuple((res[i]))
-        res = list(set(res))
         return res
         
