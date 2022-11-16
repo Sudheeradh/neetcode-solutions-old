@@ -13,19 +13,12 @@ class Solution:
         res = []
         cnt = [0]
         
-        def remaining(airport):
-            cnt = 0
-            for i in hmap[airport]:
-                if i[1] == False:
-                    cnt += 1
-            return cnt
-        
         def dfs(airport):
-            if remaining(airport) == 0:
-                if cnt[0] == n:
-                    return True
-                else:
-                    return False
+            if cnt[0] == n:
+                return True
+            
+            if airport not in hmap:
+                return False
             
             for neighbour in hmap[airport]:
                 if neighbour[1]:
