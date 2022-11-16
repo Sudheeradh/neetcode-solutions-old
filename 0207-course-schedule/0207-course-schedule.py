@@ -24,4 +24,37 @@ class Solution:
             outer.add(node)
         
         return True
+    
+# class Solution:
+#     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+#         graph = {}
+#         for i in range(numCourses):
+#             graph[i] = []
+            
+#         for i, j in prerequisites:
+#             graph[i].append(j)
+        
+#         visiting = set()
+#         visited = set()
+        
+#         def dfs(graph, course, visited):
+#             if course in visited:
+#                 return
+            
+#             visiting.add(course)
+            
+#             for prereq in graph[course]:
+#                 if prereq in visiting:
+#                     return False
+#                 if dfs(graph, prereq, visited) == False:
+#                     return False
+                
+#             visiting.remove(course)
+#             visited.add(course)
+        
+#         for course in graph:
+#             if dfs(graph, course, visited) == False:
+#                 return False
+        
+#         return True
         
